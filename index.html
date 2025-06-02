@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8" />
@@ -9,52 +9,73 @@
 
         * {
             box-sizing: border-box;
-            margin: auto;
+            margin: 0;
+            padding: 0;
         }
 
+        html,
         body {
-            position: relative;
-            height: 100vh;
+            height: 100%;
+            font-family: "Yeseva One", serif;
             display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            font-family: "Yeseva One";
+            background: #fff;
         }
 
-        /* iframe 代替 video */
+        /* Bilibili iframe 作为背景视频 */
         iframe {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             border: none;
-            z-index: -1;
+            z-index: 0;
+            pointer-events: auto;
         }
 
         .shell {
             position: relative;
             max-width: 100vh;
-            aspect-ratio: 1/1;
+            aspect-ratio: 1 / 1;
             display: flex;
             border-radius: 50%;
             overflow: hidden;
             text-align: center;
             filter: drop-shadow(-30px 30px 10px #006e9d);
+            background: transparent;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
         }
 
         .text-wrapper {
             font-size: 80px;
+            color: #000;
+            z-index: 20;
+            user-select: none;
         }
 
         span.wave {
-            background: -40% 0%/200% 100% linear-gradient(90deg, #32967048, #0a26ff, #32967048);
+            background: linear-gradient(90deg, #32967048, #0a26ff, #32967048);
+            background-size: 200% 100%;
+            background-position: -40% 0%;
             color: transparent;
             background-clip: text;
+            -webkit-background-clip: text;
             animation: flow 4s linear infinite;
             padding: 0 5px;
+            display: inline-block;
         }
 
         .text-author {
             font-size: 80px;
             text-align: center;
+            margin-top: 10px;
         }
 
         .box {
@@ -83,14 +104,14 @@
             -webkit-mask: radial-gradient(46.6px at 50% calc(100% - (27px + 38px)),
                     #fff 99%, #ffffff00 101%), radial-gradient(46.6px at 50% calc(100% + 38px),
                     #ffffff00 99%, #fff 101%) repeat-x;
-            -webkit-mask-size: calc(4*27px) 100%;
-            -webkit-mask-position: calc(50% - 2*27px) 0, 50% calc(100% - 27px);
+            -webkit-mask-size: calc(4 * 27px) 100%;
+            -webkit-mask-position: calc(50% - 2 * 27px) 0, 50% calc(100% - 27px);
             animation: flow 5s linear infinite;
         }
 
         @keyframes flow {
             100% {
-                -webkit-mask-position: calc(50% - 6*27px) 0, calc(50% - 4*27px) calc(200% - 27px);
+                -webkit-mask-position: calc(50% - 6 * 27px) 0, calc(50% - 4 * 27px) calc(200% - 27px);
             }
         }
     </style>
@@ -103,20 +124,21 @@
         <div class="box wave"></div>
         <div class="text-wrapper">
             <div class="text-content">
-                <span class="wave">Go For A Swim,</span><br>
+                <span class="wave">Go For A Swim,</span><br />
                 <span class="wave">Go Swimming.</span>
             </div>
             <div class="text-author">
-                <span class="wave">Let's go swimming</span><br>
+                <span class="wave">Let's go swimming</span><br />
             </div>
         </div>
     </div>
 
-    <!-- 用Bilibili播放器iframe代替本地视频 -->
-    <iframe src="https://player.bilibili.com/player.html?bvid=BV1TJ7Uz1Eoz"
+    <!-- Bilibili播放器iframe -->
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1TJ7Uz1Eoz&page=1"
         allowfullscreen
-        style="position:absolute; width:100%; height:100%; border:none; z-index:-1;">
-    </iframe>
+        scrolling="no"
+        frameborder="0"
+        ></iframe>
 </body>
 
 </html>
